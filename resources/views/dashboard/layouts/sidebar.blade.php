@@ -15,6 +15,11 @@
                 User
             </a>
 
+            <a class="nav-link {{ ($nav_active === 'menu-lembaga-legislatif')? 'active' : '' }}" href="{{ route('lembaga-legislatif.index') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                Lembaga Legislatif
+            </a>
+
             {{-- <div class="sb-sidenav-menu-heading">Interface</div>
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

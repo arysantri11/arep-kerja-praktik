@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LembagaLegislatifController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -25,3 +26,10 @@ Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.dest
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 /** USER SELESAI  */
+
+/** LEMBAGA LEGISLATIF MULAI  */
+Route::get('/lembaga-legislatif', [LembagaLegislatifController::class, 'index'])->name('lembaga-legislatif.index');
+Route::delete('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'destroy'])->name('lembaga-legislatif.destroy');
+Route::post('/lembaga-legislatif', [LembagaLegislatifController::class, 'store'])->name('lembaga-legislatif.store');
+Route::put('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'update'])->name('lembaga-legislatif.update');
+/** LEMBAGA LEGISLATIF SELESAI  */

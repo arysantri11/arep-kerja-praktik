@@ -14,9 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->lembaga_legislatif();
+    }
+
+    private function lembaga_legislatif()
+    {
+        \App\Models\LembagaLegislatif::factory()->create([
+            'nama_lembaga' => 'Dewan Perwakilan Rakyat Daerah (DPRD) Provinsi Sumatera Utara',
+        ]);
     }
 }
