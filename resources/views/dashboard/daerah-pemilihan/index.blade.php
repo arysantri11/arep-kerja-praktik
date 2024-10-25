@@ -2,9 +2,10 @@
 
 @section('main-body')
 {{-- HEADER MULAI --}}
-<h1 class="mt-4">Tahun Pemilihan</h1>
+<h1 class="mt-4">Daerah Pemilihan</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Index</li>
+    <li class="breadcrumb-item"><a href="{{ route('tahun-pemilihan.index') }}">Tahun Pemilihan</a></li>
+    <li class="breadcrumb-item active">Daerah Pemilihan</li>
 </ol>
 {{-- HEADER SELESAI --}}
 
@@ -12,7 +13,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col">  
-                <h5 class="m-0 font-weight-bold">Data Tahun</h5>
+                <h5 class="m-0 font-weight-bold">Data Daerah</h5>
             </div>
             <div class="col text-end">
                 <a href="#" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalTambah">
@@ -27,37 +28,35 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="ModalLabelTambah">Tambah Tahun Pemilihan </h5>
+                                <h5 class="modal-title" id="ModalLabelTambah">Tambah Daerah Pemilihan </h5>
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('tahun-pemilihan.store') }}" method="POST">
+                                <form action="{{ route('daerah-pemilihan.store') }}" method="POST">
                                     @csrf
 
-                                    <div class="row">
-                                        <div class="col mb-3 text-start">
-                                            <label for="lembaga_legislatif_id" class="form-label">Lembaga Legislatif<span class="text-danger">*</span></label>
-                                            <select name="lembaga_legislatif_id" class="form-control" id="lembaga_legislatif_id" required>
-                                                <option value="">-- Pilih Lembaga --</option>
+                                    <input type="hidden" name="tahun_pemilihan_id" value="{{ $dataTahun->id }}" required>
 
-                                                @foreach ($dataLembaga as $itemLembaga)
-                                                    <option value="{{ $itemLembaga->id }}">
-                                                        {{ $itemLembaga->nama_lembaga }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                    <div class="row">
+                                        <div class="col mb-1 text-start">
+                                            <label for="" class="form-label">Lembaga</label>
+                                            <p><b>
+                                                {{ $dataTahun->lembaga_legislatif->nama_lembaga }}
+                                            </b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-1 text-start">
+                                            <label for="" class="form-label">Tahun Pemilihan</label>
+                                            <p><b>
+                                                {{ $dataTahun->tahun }}
+                                            </b></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3 text-start">
-                                            <label for="tahun" class="form-label">Tahun<span class="text-danger">*</span></label>
-                                            <input type="number" min="0" class="form-control" id="tahun" name="tahun" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3 text-start">
-                                            <label for="tanggal" class="form-label">Tanggal<span class="text-danger">*</span></label>
-                                            <input type="date" min="0" class="form-control" id="tanggal" name="tanggal" required>
+                                            <label for="nama_daerah" class="form-label">Nama Daerah<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="nama_daerah" name="nama_daerah" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -89,28 +88,18 @@
                 <thead>
                     <tr class="bg-success text-light">
                         <th class="text-center" width="20px">No</th>
-                        <th class="text-center">Lembaga</th>
-                        <th class="text-center">Tahun</th>
-                        <th class="text-center">Tanggal</th>
-                        <th class="text-center">Keterangan</th>
-                        <th class="text-center" width="70px">Dapil</th>
+                        <th class="text-center">Nama Daerah</th>
+                        <th>Keterangan</th>
                         <th class="text-center" width="110px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    @foreach ($dataTahunPemilihan as $item)
+                    @foreach ($dataTahun->daerah_pemilihan as $item)
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
-                        <td class="text-center">{{ $item->lembaga_legislatif->nama_lembaga }}</td>
-                        <td class="text-center">{{ $item->tahun }}</td>
-                        <td class="text-center">{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
-                        <td class="text-center">{{ $item->keterangan }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('daerah-pemilihan.index', $item->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-gear"></i> Kelola
-                            </a>
-                        </td>
+                        <td class="text-center">{{ $item->nama_daerah }}</td>
+                        <td>{{ $item->keterangan }}</td>
                         <td class="text-center">
                             <a href="#" class="btn btn-warning btn-circle btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $item->id }}">
                                 <i class="fas fa-pen-to-square"></i>
@@ -129,13 +118,13 @@
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('tahun-pemilihan.destroy', $item->id) }}" method="POST" autocomplete="off">
+                                        <form action="{{ route('daerah-pemilihan.destroy', $item->id) }}" method="POST" autocomplete="off">
                                             @method('delete')
                                             @csrf
     
                                             <p>Apakah anda yakin ingin menghapus data ini? </p>
                                             <p>
-                                                <b>{{ $item->tahun .' ('. $item->tanggal .')' }}</b>
+                                                <b>{{ $item->nama_daerah }}</b>
                                             </p>
                                     </div>
                                     <div class="modal-footer">
@@ -156,32 +145,34 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="ModalLabelEdit">Edit Tahun Pemilihan </h5>
+                                        <h5 class="modal-title" id="ModalLabelEdit">Edit Daerah Pemilihan </h5>
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('tahun-pemilihan.update', $item->id) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                        <form action="{{ route('daerah-pemilihan.update', $item->id) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
 
                                             <div class="row">
-                                                <div class="col mb-3 text-start">
-                                                    <label for="" class="form-label">Lembaga Legislatif</label>
+                                                <div class="col mb-1 text-start">
+                                                    <label for="" class="form-label">Lembaga</label>
                                                     <p><b>
-                                                        {{ $item->lembaga_legislatif->nama_lembaga }}
+                                                        {{ $dataTahun->lembaga_legislatif->nama_lembaga }}
+                                                    </b></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col mb-1 text-start">
+                                                    <label for="" class="form-label">Tahun Pemilihan</label>
+                                                    <p><b>
+                                                        {{ $dataTahun->tahun }}
                                                     </b></p>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col mb-3 text-start">
-                                                    <label for="tahun" class="form-label">Tahun<span class="text-danger">*</span></label>
-                                                    <input type="number" min="0" class="form-control" id="tahun" name="tahun" value="{{ $item->tahun }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col mb-3 text-start">
-                                                    <label for="tanggal" class="form-label">Tanggal<span class="text-danger">*</span></label>
-                                                    <input type="date" min="0" class="form-control" id="tanggal" name="tanggal" value="{{ $item->tanggal }}" required>
+                                                    <label for="nama_daerah" class="form-label">Nama Daerah<span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="nama_daerah" name="nama_daerah" value="{{ $item->nama_daerah }}" required>
                                                 </div>
                                             </div>
                                             <div class="row">

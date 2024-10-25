@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\LembagaLegislatif;
+use App\Models\TahunPemilihan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -49,6 +50,29 @@ class DatabaseSeeder extends Seeder
             'tahun' => '2024',
             'tanggal' => '2024/10/17',
             'keterangan' => '',
+        ]);
+
+        // Get Data Lembaga
+        $dataTahunPemilihan = TahunPemilihan::all()->first();
+
+        // Seeder Tahun Pemilihan
+        $this->daerah_pemilihan($dataTahunPemilihan->id);
+    }
+
+    private function daerah_pemilihan($tahun_pemilihan_id)
+    {
+        \App\Models\DaerahPemilihan::factory()->create([
+            'tahun_pemilihan_id' => $tahun_pemilihan_id,
+            'nama_daerah' => 'Dapil I',
+            'keterangan' => 'Asahan, Batu Bara',
+        ])->create([
+            'tahun_pemilihan_id' => $tahun_pemilihan_id,
+            'nama_daerah' => 'Dapil II',
+            'keterangan' => 'Labuhan Batu Utara, Labuhan Batu, Labuhan Batu Selatan',
+        ])->create([
+            'tahun_pemilihan_id' => $tahun_pemilihan_id,
+            'nama_daerah' => 'Dapil III',
+            'keterangan' => 'Deli Serdang, Serdang Bedagai',
         ]);
     }
 }

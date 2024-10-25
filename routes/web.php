@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DaerahPemilihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LembagaLegislatifController;
@@ -41,3 +42,10 @@ Route::delete('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'destro
 Route::post('/tahun-pemilihan', [TahunPemilihanController::class, 'store'])->name('tahun-pemilihan.store');
 Route::put('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'update'])->name('tahun-pemilihan.update');
 /** TAHUN PEMILIHAN SELESAI  */
+
+/** DAERAH PEMILIHAN MULAI  */
+Route::get('/daerah-pemilihan/{tahun_pemilihan_id}', [DaerahPemilihanController::class, 'index'])->name('daerah-pemilihan.index');
+Route::delete('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'destroy'])->name('daerah-pemilihan.destroy');
+Route::post('/daerah-pemilihan', [DaerahPemilihanController::class, 'store'])->name('daerah-pemilihan.store');
+Route::put('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'update'])->name('daerah-pemilihan.update');
+/** DAERAH PEMILIHAN SELESAI  */

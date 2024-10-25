@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TahunPemilihan extends Model
+class DaerahPemilihan extends Model
 {
     use HasFactory;
 
@@ -13,17 +13,12 @@ class TahunPemilihan extends Model
     protected $guarded = ['id'];
 
     // table yg digunakan
-    protected $table = 'tahun_pemilihan';
+    protected $table = 'daerah_pemilihan';
 
     // Table Relationship
     // belongsTo = jika table hanya mengambil satu data dari table lain
-    public function lembaga_legislatif()
+    public function tahun_pemilihan()
     {
-        return $this->belongsTo(LembagaLegislatif::class, 'lembaga_legislatif_id');
-    }
-
-    public function daerah_pemilihan()
-    {
-        return $this->hasMany(DaerahPemilihan::class);
+        return $this->belongsTo(TahunPemilihan::class, 'tahun_pemilihan_id');
     }
 }
