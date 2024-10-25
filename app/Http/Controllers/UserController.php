@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PartaiPolitik;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -79,7 +80,13 @@ class UserController extends Controller
                 'profile' => $namaFile,
                 'role' => $request->role,
             ]);
-            
+
+            // membuat data partai baru secara otomatis
+            $dataUserBaru = User::where('username', $request->username)->first();
+
+            PartaiPolitik::create([
+                'user_id' => $dataUserBaru->id,
+            ]);
         } catch (\Throwable $th) {
             // dd($th->getMessage());
 

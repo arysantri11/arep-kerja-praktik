@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\LembagaLegislatif;
 use App\Models\TahunPemilihan;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,32 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
+        $this->users();
         $this->lembaga_legislatif();
+        $this->partai_politik();
+    }
+
+    private function users()
+    {
+        \App\Models\User::factory()->create([
+            'username' => 'admin',
+            'password' => bcrypt('admin'),
+            'nama' => 'Admin KPU Sumatera Utara',
+            'role' => '1',
+            'aktif' => 'y',
+        ])->create([
+            'username' => 'demokrat',
+            'password' => bcrypt('demokrat'),
+            'nama' => 'Demokrasi Rakyat',
+            'role' => '2',
+            'aktif' => 'y',
+        ])->create([
+            'username' => 'golkar',
+            'password' => bcrypt('golkar'),
+            'nama' => 'Golongan Rakyat',
+            'role' => '2',
+            'aktif' => 'y',
+        ]);
     }
 
     private function lembaga_legislatif()
@@ -74,5 +100,16 @@ class DatabaseSeeder extends Seeder
             'nama_daerah' => 'Dapil III',
             'keterangan' => 'Deli Serdang, Serdang Bedagai',
         ]);
+    }
+
+    private function partai_politik()
+    {
+        $dataUser = User::where('role', 2)->get();
+
+        foreach ($dataUser as $item) {
+            \App\Models\PartaiPolitik::factory()->create([
+                'user_id' => $item->id,
+            ]);
+        }
     }
 }

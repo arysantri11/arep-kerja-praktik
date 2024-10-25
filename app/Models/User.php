@@ -17,4 +17,11 @@ class User extends Authenticatable
 
     // table yg digunakan
     protected $table = 'users';
+
+    // Table Relationship
+    // belongsTo = jika table hanya mengambil satu data dari table lain
+    public function partai_politik()
+    {
+        return $this->belongsTo(PartaiPolitik::class, 'id');
+    }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DaerahPemilihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataPartaiController;
 use App\Http\Controllers\LembagaLegislatifController;
 use App\Http\Controllers\TahunPemilihanController;
 use App\Http\Controllers\UserController;
@@ -49,3 +50,8 @@ Route::delete('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'dest
 Route::post('/daerah-pemilihan', [DaerahPemilihanController::class, 'store'])->name('daerah-pemilihan.store');
 Route::put('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'update'])->name('daerah-pemilihan.update');
 /** DAERAH PEMILIHAN SELESAI  */
+
+/** DATA PARTAI MULAI  */
+Route::get('/data-partai', [DataPartaiController::class, 'index'])->name('data-partai.index');
+Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
+/** DATA PARTAI SELESAI  */

@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <link rel="shortcut icon" href="{{ asset('') }}" type="image/x-icon">
 
-        <title>Pendaftaran Caleg</title>
+        <title>{{ $title }}</title>
 
         {{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" /> --}}
 
