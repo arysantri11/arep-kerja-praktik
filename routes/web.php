@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LembagaLegislatifController;
+use App\Http\Controllers\TahunPemilihanController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -33,3 +34,10 @@ Route::delete('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, '
 Route::post('/lembaga-legislatif', [LembagaLegislatifController::class, 'store'])->name('lembaga-legislatif.store');
 Route::put('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'update'])->name('lembaga-legislatif.update');
 /** LEMBAGA LEGISLATIF SELESAI  */
+
+/** TAHUN PEMILIHAN MULAI  */
+Route::get('/tahun-pemilihan', [TahunPemilihanController::class, 'index'])->name('tahun-pemilihan.index');
+Route::delete('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'destroy'])->name('tahun-pemilihan.destroy');
+Route::post('/tahun-pemilihan', [TahunPemilihanController::class, 'store'])->name('tahun-pemilihan.store');
+Route::put('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'update'])->name('tahun-pemilihan.update');
+/** TAHUN PEMILIHAN SELESAI  */
