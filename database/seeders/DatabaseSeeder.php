@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DaerahPemilihan;
 use App\Models\LembagaLegislatif;
+use App\Models\PartaiPolitik;
 use App\Models\TahunPemilihan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,11 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
         $this->users();
         $this->lembaga_legislatif();
         $this->partai_politik();
+        $this->caleg();
     }
 
     private function users()
@@ -111,5 +114,46 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $item->id,
             ]);
         }
+    }
+
+    private function caleg()
+    {
+        $dataPartai = PartaiPolitik::all();
+        $dataDapil = DaerahPemilihan::all();
+
+        \App\Models\Caleg::factory()->create([
+            'partai_id' => $dataPartai->find(1)->id,
+            'daerah_pemilihan_id' => $dataDapil->find(1)->id,
+            'nama_lengkap' => 'Raja Abi',
+            'jenis_kelamin' => 'l',
+            'tempat_lahir' => 'Medan Tuntungan',
+            'tanggal_lahir' =>'1980/10/15',
+            'pekerjaan' => 'wiraswasta',
+            'status' => 'Belum Menikah',
+            'foto' => '',
+            'alamat' => 'Medan Tembung',
+        ])->create([
+            'partai_id' => $dataPartai->find(1)->id,
+            'daerah_pemilihan_id' => $dataDapil->find(1)->id,
+            'nama_lengkap' => 'Azwan Renaldi',
+            'jenis_kelamin' => 'l',
+            'tempat_lahir' => 'Serdang Bedagai',
+            'tanggal_lahir' =>'1997/12/12',
+            'pekerjaan' => 'Petani',
+            'status' => 'Sudah Menikah',
+            'foto' => '',
+            'alamat' => 'Medan Johor',
+        ])->create([
+            'partai_id' => $dataPartai->find(2)->id,
+            'daerah_pemilihan_id' => $dataDapil->find(2)->id,
+            'nama_lengkap' => 'Andra Sadefa',
+            'jenis_kelamin' => 'l',
+            'tempat_lahir' => 'Batu Bara',
+            'tanggal_lahir' =>'1988/10/10',
+            'pekerjaan' => 'Wiraswasta',
+            'status' => 'Sudah Menikah',
+            'foto' => '',
+            'alamat' => 'Medan Tuntungan',
+        ]);
     }
 }

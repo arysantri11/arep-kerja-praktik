@@ -14,4 +14,9 @@ class LembagaLegislatif extends Model
 
     // table yg digunakan
     protected $table = 'lembaga_legislatif';
+
+    public function tahun_pemilihan()
+    {
+        return $this->hasMany(TahunPemilihan::class);
+    }
 }

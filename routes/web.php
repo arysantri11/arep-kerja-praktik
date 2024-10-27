@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalegController;
 use App\Http\Controllers\DaerahPemilihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -55,3 +56,13 @@ Route::put('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'update'
 Route::get('/data-partai', [DataPartaiController::class, 'index'])->name('data-partai.index');
 Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
 /** DATA PARTAI SELESAI  */
+
+/** DAFTAR CALEG MULAI  */
+Route::get('/daftar-caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('daftar-caleg.pilih_lembaga');
+Route::get('/daftar-caleg/pilih-tahun/{lembaga_id}', [CalegController::class, 'pilih_tahun'])->name('daftar-caleg.pilih_tahun');
+Route::get('/daftar-caleg/pilih-dapil/{tahun_id}', [CalegController::class, 'pilih_dapil'])->name('daftar-caleg.pilih_dapil');
+Route::get('/daftar-caleg/{dapil_id}', [CalegController::class, 'index'])->name('daftar-caleg.index');
+Route::delete('/daftar-caleg/{id}', [CalegController::class, 'destroy'])->name('daftar-caleg.destroy');
+Route::post('/daftar-caleg', [CalegController::class, 'store'])->name('daftar-caleg.store');
+Route::put('/daftar-caleg/{id}', [CalegController::class, 'update'])->name('daftar-caleg.update');
+/** DAFTAR CALEG SELESAI  */

@@ -28,4 +28,16 @@ class Controller extends BaseController
     {
         return $this->usersProfile_pathFolder() . '/' . $namaFile;
     }
+
+    // CALEG
+    // Foto
+    public function calegFoto_pathFolder()
+    {
+        return public_path() . '/img/caleg/foto';
+    }
+
+    public function calegFoto_pathFile($namaFile)
+    {
+        return $this->calegFoto_pathFolder() . '/' . $namaFile;
+    }
 }
