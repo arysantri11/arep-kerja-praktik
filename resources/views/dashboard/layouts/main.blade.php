@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="shortcut icon" href="{{ asset('') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('img/logo-kpu.png') }}" type="image/x-icon">
 
         <title>{{ $title }}</title>
 
@@ -55,6 +55,27 @@
                 <!-- Footer Selesai -->
             </div>
         </div>
+
+        <!-- Logout Modal Mulai -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Yakin ingin keluar?</h5>
+                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Klik "Logout" jika kamu ingin keluar.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Logout Modal Selesai -->
 
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js') }}"></script>

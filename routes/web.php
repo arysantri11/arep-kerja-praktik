@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalegController;
 use App\Http\Controllers\DaerahPemilihanController;
 use Illuminate\Support\Facades\Route;
@@ -20,49 +21,62 @@ use App\Http\Controllers\UserController;
 |
 */
 
-/** HALAMAN UTAMA */
-Route::get('/', [DashboardController::class, 'index'])->name('home');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// GRUP MIDDLEWARE AUTH MULAI
+Route::middleware('auth')->group(function () {
 
-/** USER MULAI  */
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-Route::post('/user', [UserController::class, 'store'])->name('user.store');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-/** USER SELESAI  */
+    /** HALAMAN UTAMA */
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-/** LEMBAGA LEGISLATIF MULAI  */
-Route::get('/lembaga-legislatif', [LembagaLegislatifController::class, 'index'])->name('lembaga-legislatif.index');
-Route::delete('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'destroy'])->name('lembaga-legislatif.destroy');
-Route::post('/lembaga-legislatif', [LembagaLegislatifController::class, 'store'])->name('lembaga-legislatif.store');
-Route::put('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'update'])->name('lembaga-legislatif.update');
-/** LEMBAGA LEGISLATIF SELESAI  */
+    /** USER MULAI  */
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    /** USER SELESAI  */
 
-/** TAHUN PEMILIHAN MULAI  */
-Route::get('/tahun-pemilihan', [TahunPemilihanController::class, 'index'])->name('tahun-pemilihan.index');
-Route::delete('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'destroy'])->name('tahun-pemilihan.destroy');
-Route::post('/tahun-pemilihan', [TahunPemilihanController::class, 'store'])->name('tahun-pemilihan.store');
-Route::put('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'update'])->name('tahun-pemilihan.update');
-/** TAHUN PEMILIHAN SELESAI  */
+    /** LEMBAGA LEGISLATIF MULAI  */
+    Route::get('/lembaga-legislatif', [LembagaLegislatifController::class, 'index'])->name('lembaga-legislatif.index');
+    Route::delete('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'destroy'])->name('lembaga-legislatif.destroy');
+    Route::post('/lembaga-legislatif', [LembagaLegislatifController::class, 'store'])->name('lembaga-legislatif.store');
+    Route::put('/lembaga-legislatif/{id}', [LembagaLegislatifController::class, 'update'])->name('lembaga-legislatif.update');
+    /** LEMBAGA LEGISLATIF SELESAI  */
 
-/** DAERAH PEMILIHAN MULAI  */
-Route::get('/daerah-pemilihan/{tahun_pemilihan_id}', [DaerahPemilihanController::class, 'index'])->name('daerah-pemilihan.index');
-Route::delete('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'destroy'])->name('daerah-pemilihan.destroy');
-Route::post('/daerah-pemilihan', [DaerahPemilihanController::class, 'store'])->name('daerah-pemilihan.store');
-Route::put('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'update'])->name('daerah-pemilihan.update');
-/** DAERAH PEMILIHAN SELESAI  */
+    /** TAHUN PEMILIHAN MULAI  */
+    Route::get('/tahun-pemilihan', [TahunPemilihanController::class, 'index'])->name('tahun-pemilihan.index');
+    Route::delete('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'destroy'])->name('tahun-pemilihan.destroy');
+    Route::post('/tahun-pemilihan', [TahunPemilihanController::class, 'store'])->name('tahun-pemilihan.store');
+    Route::put('/tahun-pemilihan/{id}', [TahunPemilihanController::class, 'update'])->name('tahun-pemilihan.update');
+    /** TAHUN PEMILIHAN SELESAI  */
 
-/** DATA PARTAI MULAI  */
-Route::get('/data-partai', [DataPartaiController::class, 'index'])->name('data-partai.index');
-Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
-/** DATA PARTAI SELESAI  */
+    /** DAERAH PEMILIHAN MULAI  */
+    Route::get('/daerah-pemilihan/{tahun_pemilihan_id}', [DaerahPemilihanController::class, 'index'])->name('daerah-pemilihan.index');
+    Route::delete('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'destroy'])->name('daerah-pemilihan.destroy');
+    Route::post('/daerah-pemilihan', [DaerahPemilihanController::class, 'store'])->name('daerah-pemilihan.store');
+    Route::put('/daerah-pemilihan/{id}', [DaerahPemilihanController::class, 'update'])->name('daerah-pemilihan.update');
+    /** DAERAH PEMILIHAN SELESAI  */
 
-/** DAFTAR CALEG MULAI  */
-Route::get('/daftar-caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('daftar-caleg.pilih_lembaga');
-Route::get('/daftar-caleg/pilih-tahun/{lembaga_id}', [CalegController::class, 'pilih_tahun'])->name('daftar-caleg.pilih_tahun');
-Route::get('/daftar-caleg/pilih-dapil/{tahun_id}', [CalegController::class, 'pilih_dapil'])->name('daftar-caleg.pilih_dapil');
-Route::get('/daftar-caleg/{dapil_id}', [CalegController::class, 'index'])->name('daftar-caleg.index');
-Route::delete('/daftar-caleg/{id}', [CalegController::class, 'destroy'])->name('daftar-caleg.destroy');
-Route::post('/daftar-caleg', [CalegController::class, 'store'])->name('daftar-caleg.store');
-Route::put('/daftar-caleg/{id}', [CalegController::class, 'update'])->name('daftar-caleg.update');
-/** DAFTAR CALEG SELESAI  */
+    /** DATA PARTAI MULAI  */
+    Route::get('/data-partai', [DataPartaiController::class, 'index'])->name('data-partai.index');
+    Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
+    /** DATA PARTAI SELESAI  */
+
+    /** DAFTAR CALEG MULAI  */
+    Route::get('/daftar-caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('daftar-caleg.pilih_lembaga');
+    Route::get('/daftar-caleg/pilih-tahun/{lembaga_id}', [CalegController::class, 'pilih_tahun'])->name('daftar-caleg.pilih_tahun');
+    Route::get('/daftar-caleg/pilih-dapil/{tahun_id}', [CalegController::class, 'pilih_dapil'])->name('daftar-caleg.pilih_dapil');
+    Route::get('/daftar-caleg/{dapil_id}', [CalegController::class, 'index'])->name('daftar-caleg.index');
+    Route::delete('/daftar-caleg/{id}', [CalegController::class, 'destroy'])->name('daftar-caleg.destroy');
+    Route::post('/daftar-caleg', [CalegController::class, 'store'])->name('daftar-caleg.store');
+    Route::put('/daftar-caleg/{id}', [CalegController::class, 'update'])->name('daftar-caleg.update');
+    /** DAFTAR CALEG SELESAI  */
+
+    // Logout
+    Route::get('logout', [AuthController::class, 'actionLogout'])->name('logout');
+});
+// GRUP MIDDLEWARE AUTH SELESAI
+
+/** Login mulai  */
+Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('login', [AuthController::class, 'authenticate'])->name('login.authenticate')->middleware('guest');
+/** Login selesai */

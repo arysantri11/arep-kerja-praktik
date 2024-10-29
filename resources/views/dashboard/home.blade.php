@@ -16,8 +16,8 @@
                 <h6 class="m-0 font-weight-bold">Info</h6>
             </div>
             <div class="card-body">
-                {{-- Selamat datang di <strong>CALEG NOW</strong>, anda login sebagai <strong>{{ ucfirst(auth()->user()->role) }}!</strong> --}}
-                Selamat datang di <strong>CALEG NOW</strong>, anda login sebagai <strong>Admin!</strong>
+                Selamat datang di <strong>CALEG NOW</strong>, anda login sebagai <strong>{{ (auth()->user()->role == '1')? 'Admin KPU' : 'Admin Partai' }}!</strong>
+                {{-- Selamat datang di <strong>CALEG NOW</strong>, anda login sebagai <strong>Admin!</strong> --}}
             </div>
         </div>
     </div>

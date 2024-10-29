@@ -8,6 +8,8 @@
                 Dashboard
             </a>
 
+            @if (auth()->user()->role == '1')
+
             <div class="sb-sidenav-menu-heading">Master</div>
 
             <a class="nav-link {{ ($nav_active === 'menu-user')? 'active' : '' }}" href="{{ route('user.index') }}">
@@ -25,6 +27,8 @@
                 Tahun Pemilihan
             </a>
 
+            @elseif (auth()->user()->role == '2')
+
             <div class="sb-sidenav-menu-heading">Pendaftaran</div>
 
             <a class="nav-link {{ ($nav_active === 'menu-daftar-caleg')? 'active' : '' }}" href="{{ route('daftar-caleg.pilih_lembaga') }}">
@@ -38,6 +42,8 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                 Data Partai
             </a>
+
+            @endif
 
             {{-- <div class="sb-sidenav-menu-heading">Interface</div>
 
@@ -56,6 +62,6 @@
     </div>
     <div class="sb-sidenav-footer">
         <div class="small">Logged in as:</div>
-        Ary Santri Yuanda
+        {{ auth()->user()->nama }}
     </div>
 </nav>

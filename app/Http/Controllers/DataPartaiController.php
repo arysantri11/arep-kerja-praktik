@@ -13,7 +13,8 @@ class DataPartaiController extends Controller
 {
     public function index()
     {
-        $dataUser = User::where('username', 'demokrat')->first();
+        // $dataUser = User::where('username', 'golkar')->first();
+        $dataUser = User::where('username', auth()->user()->username)->first();
         $dataPartai = PartaiPolitik::where('user_id', $dataUser->id)->first();
 
         // jika data tidak ditemukan
