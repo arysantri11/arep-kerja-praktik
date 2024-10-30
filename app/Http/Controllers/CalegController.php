@@ -59,7 +59,7 @@ class CalegController extends Controller
     public function index($dapil_id)
     {
         
-        $dataDaerahPemilihan = DaerahPemilihan::with(['tahun_pemilihan', 'caleg'])->first();
+        $dataDaerahPemilihan = DaerahPemilihan::with(['tahun_pemilihan', 'caleg'])->where('id', $dapil_id)->first();
 
         // jika data tidak ditemukan
         if (!$dataDaerahPemilihan) {
