@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalegController;
 use App\Http\Controllers\DaerahPemilihanController;
+use App\Http\Controllers\DaftarCalegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataPartaiController;
@@ -60,6 +61,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/data-partai', [DataPartaiController::class, 'index'])->name('data-partai.index');
     Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
     /** DATA PARTAI SELESAI  */
+
+    /** DAFTAR CALEG MULAI  */
+    Route::get('/daftar-caleg/pilih-lembaga', [DaftarCalegController::class, 'pilih_lembaga'])->name('daftar-caleg.pilih_lembaga');
+    Route::get('/daftar-caleg/pilih-tahun/{lembaga_id}', [DaftarCalegController::class, 'pilih_tahun'])->name('daftar-caleg.pilih_tahun');
+    Route::get('/daftar-caleg/pilih-dapil/{tahun_id}', [DaftarCalegController::class, 'pilih_dapil'])->name('daftar-caleg.pilih_dapil');
+    Route::get('/daftar-caleg/{dapil_id}', [DaftarCalegController::class, 'index'])->name('daftar-caleg.index');
+    Route::get('/daftar-caleg/cetak/{dapil_id}', [DaftarCalegController::class, 'cetak'])->name('daftar-caleg.cetak');
+    /** DAFTAR CALEG SELESAI  */
 
     /** CALEG MULAI  */
     Route::get('/caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('caleg.pilih_lembaga');

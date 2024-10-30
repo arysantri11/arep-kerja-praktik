@@ -141,12 +141,13 @@
                         <th>Nama</th>
                         <th class="text-center">Jenis Kelamin</th>
                         <th class="text-center">Tempat/Tanggal Lahir</th>
+                        <th class="text-center">Partai</th>
                         <th class="text-center" width="110px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    @foreach ($dataDapil->caleg->sortByDesc('id') as $item)
+                    @foreach ($dataCaleg->sortByDesc('id') as $item)
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
                         <td class="text-center">
@@ -160,6 +161,7 @@
                         <td>{{ $item->nama_lengkap }}</td>
                         <td class="text-center">{{ ($item->jenis_kelamin == 'l')? 'Laki - Laki' : 'Perempuan' }}</td>
                         <td class="text-center">{{ $item->tempat_lahir }}, {{ Carbon\Carbon::parse($item->tanggal_lahir)->isoFormat('D MMMM Y') }}</td>
+                        <td class="text-center">{{ $item->partai_politik->users->nama }}</td>
                         <td class="text-center">
                             <a href="#" class="btn btn-warning btn-circle btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $item->id }}">
                                 <i class="fas fa-pen-to-square"></i>

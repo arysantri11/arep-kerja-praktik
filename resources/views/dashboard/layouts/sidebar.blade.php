@@ -27,6 +27,11 @@
                 Tahun Pemilihan
             </a>
 
+            <a class="nav-link {{ ($nav_active === 'menu-daftar-caleg')? 'active' : '' }}" href="{{ route('daftar-caleg.pilih_lembaga') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
+                Daftar Caleg
+            </a>
+
             @elseif (auth()->user()->role == '2')
 
             <div class="sb-sidenav-menu-heading">Pendaftaran</div>

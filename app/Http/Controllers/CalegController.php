@@ -58,7 +58,8 @@ class CalegController extends Controller
 
     public function index($dapil_id)
     {
-        $dataDaerahPemilihan = DaerahPemilihan::with(['tahun_pemilihan', 'caleg'])->where('id', $dapil_id)->first();
+        
+        $dataDaerahPemilihan = DaerahPemilihan::with(['tahun_pemilihan', 'caleg'])->first();
 
         // jika data tidak ditemukan
         if (!$dataDaerahPemilihan) {
@@ -66,13 +67,14 @@ class CalegController extends Controller
         }
 
         // Get Data User Login
-        $dataUserLogin = User::where('username', 'demokrat')->first();
-        $dataPartai = PartaiPolitik::where('user_id', $dataUserLogin->id)->first();
+        $dataPartai = PartaiPolitik::where('user_id', auth()->user()->id)->first();
+        $dataCaleg = $dataDaerahPemilihan->caleg->where('partai_id', $dataPartai->id);
 
         return view('dashboard.caleg.index', [
             'title'   => 'Pendaftaran Caleg',
             'nav_active' => 'menu-caleg',
             'dataDapil' => $dataDaerahPemilihan,
+            'dataCaleg' => $dataCaleg,
             'dataPartai' => $dataPartai,
         ]);
     }

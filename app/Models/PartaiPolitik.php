@@ -21,4 +21,9 @@ class PartaiPolitik extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function caleg()
+    {
+        return $this->hasMany(Caleg::class, 'partai_id');
+    }
 }

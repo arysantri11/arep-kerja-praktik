@@ -145,6 +145,17 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Medan Johor',
         ])->create([
             'partai_id' => $dataPartai->find(2)->id,
+            'daerah_pemilihan_id' => $dataDapil->find(1)->id,
+            'nama_lengkap' => 'Ade Riski',
+            'jenis_kelamin' => 'l',
+            'tempat_lahir' => 'Labuhan Batu Utara',
+            'tanggal_lahir' =>'1997/12/12',
+            'pekerjaan' => 'Karyawan BUMN',
+            'status' => 'Belum Menikah',
+            'foto' => '',
+            'alamat' => 'Medan Tembung',
+        ])->create([
+            'partai_id' => $dataPartai->find(2)->id,
             'daerah_pemilihan_id' => $dataDapil->find(2)->id,
             'nama_lengkap' => 'Andra Sadefa',
             'jenis_kelamin' => 'l',
