@@ -2,9 +2,10 @@
 
 @section('main-body')
 {{-- HEADER MULAI --}}
-<h1 class="mt-4">Daftar Caleg</h1>
+<h1 class="mt-4">Pendaftaran Caleg</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Lembaga Legislatif</li>
+    <li class="breadcrumb-item"><a href="{{ route('caleg.pilih_lembaga') }}">Lembaga Legislatif</a></li>
+    <li class="breadcrumb-item active">Tahun Pemilihan</li>
 </ol>
 {{-- HEADER SELESAI --}}
 
@@ -12,7 +13,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col">  
-                <h5 class="m-0 font-weight-bold">Pilih Lembaga</h5>
+                <h5 class="m-0 font-weight-bold">{{ $dataLembaga->nama_lembaga }}</h5>
             </div>
         </div>
     </div>
@@ -22,18 +23,22 @@
                 <thead>
                     <tr class="bg-success text-light">
                         <th class="text-center" width="20px">No</th>
-                        <th>Nama Lembaga</th>
+                        <th class="text-center">Tahun</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Keterangan</th>
                         <th class="text-center" width="110px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    @foreach ($dataLembagaLegislatif as $item)
+                    @foreach ($dataLembaga->tahun_pemilihan->sortByDesc('tahun') as $item)
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
-                        <td>{{ $item->nama_lembaga }}</td>
+                        <td class="text-center">{{ $item->tahun }}</td>
+                        <td class="text-center">{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
+                        <td class="text-center">{{ $item->keterangan }}</td>
                         <td class="text-center">
-                            <a href="{{ route('daftar-caleg.pilih_tahun', $item->id) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('caleg.pilih_dapil', $item->id) }}" class="btn btn-primary btn-sm">
                                 Pilih
                             </a>
                         </td>

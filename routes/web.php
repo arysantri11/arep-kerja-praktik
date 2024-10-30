@@ -61,15 +61,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/data-partai/{id}', [DataPartaiController::class, 'update'])->name('data-partai.update');
     /** DATA PARTAI SELESAI  */
 
-    /** DAFTAR CALEG MULAI  */
-    Route::get('/daftar-caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('daftar-caleg.pilih_lembaga');
-    Route::get('/daftar-caleg/pilih-tahun/{lembaga_id}', [CalegController::class, 'pilih_tahun'])->name('daftar-caleg.pilih_tahun');
-    Route::get('/daftar-caleg/pilih-dapil/{tahun_id}', [CalegController::class, 'pilih_dapil'])->name('daftar-caleg.pilih_dapil');
-    Route::get('/daftar-caleg/{dapil_id}', [CalegController::class, 'index'])->name('daftar-caleg.index');
-    Route::delete('/daftar-caleg/{id}', [CalegController::class, 'destroy'])->name('daftar-caleg.destroy');
-    Route::post('/daftar-caleg', [CalegController::class, 'store'])->name('daftar-caleg.store');
-    Route::put('/daftar-caleg/{id}', [CalegController::class, 'update'])->name('daftar-caleg.update');
-    /** DAFTAR CALEG SELESAI  */
+    /** CALEG MULAI  */
+    Route::get('/caleg/pilih-lembaga', [CalegController::class, 'pilih_lembaga'])->name('caleg.pilih_lembaga');
+    Route::get('/caleg/pilih-tahun/{lembaga_id}', [CalegController::class, 'pilih_tahun'])->name('caleg.pilih_tahun');
+    Route::get('/caleg/pilih-dapil/{tahun_id}', [CalegController::class, 'pilih_dapil'])->name('caleg.pilih_dapil');
+    Route::get('/caleg/{dapil_id}', [CalegController::class, 'index'])->name('caleg.index');
+    Route::delete('/caleg/{id}', [CalegController::class, 'destroy'])->name('caleg.destroy');
+    Route::post('/caleg', [CalegController::class, 'store'])->name('caleg.store');
+    Route::put('/caleg/{id}', [CalegController::class, 'update'])->name('caleg.update');
+    /** CALEG SELESAI  */
 
     // Logout
     Route::get('logout', [AuthController::class, 'actionLogout'])->name('logout');

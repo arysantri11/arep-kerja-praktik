@@ -17,9 +17,9 @@ class CalegController extends Controller
 {
     public function pilih_lembaga()
     {
-        return view('dashboard.daftar-caleg.pilih-lembaga', [
-            'title'   => 'Daftar Caleg',
-            'nav_active' => 'menu-daftar-caleg',
+        return view('dashboard.caleg.pilih-lembaga', [
+            'title'   => 'Pendaftaran Caleg',
+            'nav_active' => 'menu-caleg',
             'dataLembagaLegislatif' => LembagaLegislatif::all()
         ]);
     }
@@ -33,9 +33,9 @@ class CalegController extends Controller
             return redirect(route('dashboard'));
         }
 
-        return view('dashboard.daftar-caleg.pilih-tahun', [
-            'title'   => 'Daftar Caleg',
-            'nav_active' => 'menu-daftar-caleg',
+        return view('dashboard.caleg.pilih-tahun', [
+            'title'   => 'Pendaftaran Caleg',
+            'nav_active' => 'menu-caleg',
             'dataLembaga' => $dataLembaga,
         ]);
     }
@@ -49,9 +49,9 @@ class CalegController extends Controller
             return redirect(route('dashboard'));
         }
 
-        return view('dashboard.daftar-caleg.pilih-dapil', [
-            'title'   => 'Daftar Caleg',
-            'nav_active' => 'menu-daftar-caleg',
+        return view('dashboard.caleg.pilih-dapil', [
+            'title'   => 'Pendaftaran Caleg',
+            'nav_active' => 'menu-caleg',
             'dataTahun' => $dataTahunPemilihan
         ]);
     }
@@ -69,9 +69,9 @@ class CalegController extends Controller
         $dataUserLogin = User::where('username', 'demokrat')->first();
         $dataPartai = PartaiPolitik::where('user_id', $dataUserLogin->id)->first();
 
-        return view('dashboard.daftar-caleg.index', [
-            'title'   => 'Daftar Caleg',
-            'nav_active' => 'menu-daftar-caleg',
+        return view('dashboard.caleg.index', [
+            'title'   => 'Pendaftaran Caleg',
+            'nav_active' => 'menu-caleg',
             'dataDapil' => $dataDaerahPemilihan,
             'dataPartai' => $dataPartai,
         ]);
@@ -162,7 +162,7 @@ class CalegController extends Controller
 
         // redirect
         Alert::success('Berhasil', 'Caleg berhasil ditambahkan!');
-        return redirect()->route('daftar-caleg.index', $request->daerah_pemilihan_id);
+        return redirect()->route('caleg.index', $request->daerah_pemilihan_id);
     }
 
     public function destroy(string $id)
@@ -285,6 +285,6 @@ class CalegController extends Controller
         
         // pindah ke halaman index
         Alert::success('Berhasil', 'Caleg berhasil diubah!');
-        return redirect(route('daftar-caleg.index', $dataCaleg->daerah_pemilihan_id));
+        return redirect(route('caleg.index', $dataCaleg->daerah_pemilihan_id));
     }
 }

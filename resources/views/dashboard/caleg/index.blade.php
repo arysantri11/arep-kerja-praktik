@@ -2,11 +2,11 @@
 
 @section('main-body')
 {{-- HEADER MULAI --}}
-<h1 class="mt-4">Daftar Caleg</h1>
+<h1 class="mt-4">Pendaftaran Caleg</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item"><a href="{{ route('daftar-caleg.pilih_lembaga') }}">Lembaga Legislatif</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('daftar-caleg.pilih_tahun', $dataDapil->tahun_pemilihan->lembaga_legislatif_id) }}">Tahun Pemilihan</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('daftar-caleg.pilih_dapil', $dataDapil->tahun_pemilihan_id) }}">Daerah Pemilihan</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('caleg.pilih_lembaga') }}">Lembaga Legislatif</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('caleg.pilih_tahun', $dataDapil->tahun_pemilihan->lembaga_legislatif_id) }}">Tahun Pemilihan</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('caleg.pilih_dapil', $dataDapil->tahun_pemilihan_id) }}">Daerah Pemilihan</a></li>
     <li class="breadcrumb-item active">Daerah Pemilihan</li>
 </ol>
 {{-- HEADER SELESAI --}}
@@ -34,7 +34,7 @@
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('daftar-caleg.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('caleg.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     <input type="hidden" name="partai_id" value="{{ $dataPartai->id }}" required>
@@ -178,7 +178,7 @@
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('daftar-caleg.destroy', $item->id) }}" method="POST" autocomplete="off">
+                                        <form action="{{ route('caleg.destroy', $item->id) }}" method="POST" autocomplete="off">
                                             @method('delete')
                                             @csrf
     
@@ -207,7 +207,7 @@
                                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('daftar-caleg.update', $item->id) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                        <form action="{{ route('caleg.update', $item->id) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
 

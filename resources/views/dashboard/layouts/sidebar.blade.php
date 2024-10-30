@@ -31,9 +31,9 @@
 
             <div class="sb-sidenav-menu-heading">Pendaftaran</div>
 
-            <a class="nav-link {{ ($nav_active === 'menu-daftar-caleg')? 'active' : '' }}" href="{{ route('daftar-caleg.pilih_lembaga') }}">
+            <a class="nav-link {{ ($nav_active === 'menu-caleg')? 'active' : '' }}" href="{{ route('caleg.pilih_lembaga') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
-                Daftar Caleg
+                Caleg
             </a>
 
             <div class="sb-sidenav-menu-heading">Setting</div>
